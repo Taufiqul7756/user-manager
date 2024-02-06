@@ -5,8 +5,10 @@ import axios from "axios";
 import { RxUpdate } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { IoCreateOutline } from "react-icons/io5";
-
 import Link from "next/link";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = () => {
   const [users, setUsers] = useState([]);
@@ -26,8 +28,21 @@ const HomePage = () => {
     fetchData();
   }, []);
 
+  const handleDeleteUser = async (id) => {
+    try {
+      await axios.delete(`https://tasks.vitasoftsolutions.com/userdata/${id}`);
+      // Filter out the deleted user from the users array
+      setUsers(users.filter((user) => user.id !== id));
+      toast.success("Delete Successful");
+    } catch (error) {
+      console.error("Error Deleting User:", error);
+      toast.error("Something went wrong during Delete");
+    }
+  };
+
   return (
     <div className="container mx-auto">
+      <ToastContainer />
       <div className="flex justify-between mb-4 p-1">
         <h1 className="text-2xl font-bold ">User List</h1>
         <Link
@@ -89,7 +104,10 @@ const HomePage = () => {
                 <td className="px-3 py-4">
                   <div className="flex justify-center items-center gap-2">
                     <RxUpdate className="text-green-400 h-5 w-5" />
-                    <MdDelete className="text-red-700 h-5 w-5" />
+                    <MdDelete
+                      className="text-red-700 h-5 w-5 cursor-pointer"
+                      onClick={() => handleDeleteUser(user.id)}
+                    />
                   </div>
                 </td>
               </tr>
