@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Dropzone from "react-dropzone";
-import DatePicker from "react-datepicker";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import Dropzone from "react-dropzone";
+// import DatePicker from "react-datepicker";
+// import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "react-datepicker/dist/react-datepicker.css";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import axios from "axios";
 
 const Form = () => {
@@ -16,8 +16,8 @@ const Form = () => {
   const [description, setDescription] = useState("");
   const [activeStatus, setActiveStatus] = useState(false);
 
-  const onDrop = (acceptedFiles) => setProfilePicture(acceptedFiles[0]);
-  console.log("activeStatus", activeStatus);
+  // const onDrop = (acceptedFiles) => setProfilePicture(acceptedFiles[0]);
+  // console.log("activeStatus", activeStatus);
 
   const handleCreateUser = (data) => {
     const inputDate = new Date(startDate);
@@ -36,17 +36,18 @@ const Form = () => {
 
     axios
       .post("https://tasks.vitasoftsolutions.com/userdata/", formData)
-
       .then((res) => {
         console.log("Data--->", data);
         reset();
         setProfilePicture(null);
         setDescription("");
         setActiveStatus(false);
-        toast.success("User Created successfully");
+        // toast.success("User Created successfully");
+        console.log("User Created successfully");
       })
       .catch((error) => {
-        toast.error(`Something went wrong!`);
+        // toast.error(`Something went wrong!`);
+        console.error(`Something went wrong!`);
       });
   };
 
@@ -75,10 +76,11 @@ const Form = () => {
             {...register("name")}
             type="text"
             placeholder="Name"
+            required
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label
             htmlFor="profile_picture"
             className="block text-sm font-medium text-gray-700"
@@ -100,10 +102,10 @@ const Form = () => {
               </div>
             )}
           </Dropzone>
-        </div>
+        </div> */}
 
         <div className="flex justify-start gap-36">
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="birthdate"
               className="block text-sm font-medium text-gray-700"
@@ -114,10 +116,11 @@ const Form = () => {
               className="mt-1 p-2 border rounded-md w-full"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
+              required
             />
-          </div>
+          </div> */}
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="phone_number"
               className="block text-sm font-medium text-gray-700"
@@ -129,11 +132,12 @@ const Form = () => {
               {...register("phone_number")}
               type="tel"
               placeholder="Phone Number"
+              required
             />
-          </div>
+          </div> */}
 
           {/* Active Status */}
-          <div className="mb-4 flex items-center">
+          {/* <div className="mb-4 flex items-center">
             <input
               type="checkbox"
               id="active_status"
@@ -148,17 +152,17 @@ const Form = () => {
             >
               Status
             </label>
-          </div>
+          </div> */}
         </div>
 
         <div className="mb-4">
-          <label
+          {/* <label
             htmlFor="description"
             className="block text-sm font-medium text-gray-700"
           >
             Description
-          </label>
-          <div className="block text-sm font-medium text-gray-700">
+          </label> */}
+          {/* <div className="block text-sm font-medium text-gray-700">
             <CKEditor
               editor={ClassicEditor}
               data={description}
@@ -166,10 +170,10 @@ const Form = () => {
                 const data = editor.getData();
                 setDescription(data);
               }}
+              required
             />
-          </div>
+          </div> */}
         </div>
-
         <button
           className="bg-indigo-500 text-white p-2 rounded-md w-full"
           type="submit"
