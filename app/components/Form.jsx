@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Dropzone from "react-dropzone";
-// import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "react-datepicker/dist/react-datepicker.css";
@@ -105,7 +105,7 @@ const Form = () => {
         </div>
 
         <div className="flex justify-start gap-36">
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label
               htmlFor="birthdate"
               className="block text-sm font-medium text-gray-700"
@@ -118,9 +118,9 @@ const Form = () => {
               onChange={(date) => setStartDate(date)}
               required
             />
-          </div> */}
+          </div>
 
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label
               htmlFor="phone_number"
               className="block text-sm font-medium text-gray-700"
@@ -134,10 +134,10 @@ const Form = () => {
               placeholder="Phone Number"
               required
             />
-          </div> */}
+          </div>
 
           {/* Active Status */}
-          {/* <div className="mb-4 flex items-center">
+          <div className="mb-4 flex items-center">
             <input
               type="checkbox"
               id="active_status"
@@ -152,7 +152,7 @@ const Form = () => {
             >
               Status
             </label>
-          </div> */}
+          </div>
         </div>
 
         <div className="mb-4">
