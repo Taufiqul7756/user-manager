@@ -6,8 +6,10 @@ import DatePicker from "react-datepicker";
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "react-datepicker/dist/react-datepicker.css";
-// import toast from "react-hot-toast";
 import axios from "axios";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Form = () => {
   const { handleSubmit, reset, register } = useForm();
@@ -42,12 +44,12 @@ const Form = () => {
         setProfilePicture(null);
         setDescription("");
         setActiveStatus(false);
-        // toast.success("User Created successfully");
         console.log("User Created successfully");
+        toast.success("User created successfully!");
       })
       .catch((error) => {
-        // toast.error(`Something went wrong!`);
-        console.error(`Something went wrong!`);
+        console.error("Something went wrong!");
+        toast.error("Error occurred while creating user.");
       });
   };
 
@@ -58,6 +60,7 @@ const Form = () => {
         onSubmit={handleSubmit(handleCreateUser)}
         className="p-16 bg-white rounded-md shadow-md"
       >
+        <ToastContainer />
         <h1
           className="mb-10 font-bold text-2xl flex justify-center
          items-center "
