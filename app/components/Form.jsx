@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import Dropzone from "react-dropzone";
+import Dropzone from "react-dropzone";
 // import DatePicker from "react-datepicker";
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -16,8 +16,8 @@ const Form = () => {
   const [description, setDescription] = useState("");
   const [activeStatus, setActiveStatus] = useState(false);
 
-  // const onDrop = (acceptedFiles) => setProfilePicture(acceptedFiles[0]);
-  // console.log("activeStatus", activeStatus);
+  const onDrop = (acceptedFiles) => setProfilePicture(acceptedFiles[0]);
+  console.log("activeStatus", activeStatus);
 
   const handleCreateUser = (data) => {
     const inputDate = new Date(startDate);
@@ -80,7 +80,7 @@ const Form = () => {
           />
         </div>
 
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <label
             htmlFor="profile_picture"
             className="block text-sm font-medium text-gray-700"
@@ -102,7 +102,7 @@ const Form = () => {
               </div>
             )}
           </Dropzone>
-        </div> */}
+        </div>
 
         <div className="flex justify-start gap-36">
           {/* <div className="mb-4">
