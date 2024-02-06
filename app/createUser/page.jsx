@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../components/Form";
 
-const page = () => {
+const CreateUser = () => {
   return (
     <div>
       <Form />
@@ -9,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CreateUser;
