@@ -31,7 +31,7 @@ const HomePage = () => {
       <div className="flex justify-between mb-4 p-1">
         <h1 className="text-2xl font-bold ">User List</h1>
         <Link
-          href="/createUser"
+          href="/create-user"
           className="flex items-center gap-2 text-2xl font-bold hover:bg-slate-200 rounded p-1"
         >
           Create User
