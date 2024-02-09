@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = () => {
   const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +40,9 @@ const HomePage = () => {
       toast.error("Something went wrong during Delete");
     }
   };
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="container mx-auto">
@@ -52,6 +56,16 @@ const HomePage = () => {
           Create User
           <IoCreateOutline />
         </Link>
+      </div>
+      <div className="mb-4">
+        <h4>Filter By: </h4>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by name"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
+        />
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
@@ -81,7 +95,7 @@ const HomePage = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <tr key={user.id}>
                 <td className="px-6 py-4">
                   <img
