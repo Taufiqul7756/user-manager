@@ -19,16 +19,16 @@ const NavBar = () => {
           label={
             <Avatar
               alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              img="https://tasks.vitasoftsolutions.com/media/profile_pictures/3d-illustration-person-with-sunglasses_23-2149436188.jpg"
               rounded
             />
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
+            <span className="block text-sm">Taufiqul Islam</span>
+            {/* <span className="block truncate text-sm font-medium">
               name@flowbite.com
-            </span>
+            </span> */}
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
@@ -39,13 +39,10 @@ const NavBar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="#" active>
+        <Navbar.Link href="/" active>
           Home
         </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        <Navbar.Link href="/create-user">Create User</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
