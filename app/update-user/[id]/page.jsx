@@ -15,7 +15,7 @@ const Page = ({ params }) => {
   const [user, setUser] = useState(null); // Initialize user state with null
   const { handleSubmit, reset, register } = useForm();
   const [profilePicture, setProfilePicture] = useState(null);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
   const [description, setDescription] = useState("");
   const [activeStatus, setActiveStatus] = useState(false);
   const id = params.id;
@@ -34,6 +34,10 @@ const Page = ({ params }) => {
         console.log(data);
         setUser(data);
         // toast.success("Delete Successful");
+
+        if (!startDate) {
+          setStartDate(new Date(data.birthdate));
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
         // toast.error("Something went wrong during Delete");
@@ -41,13 +45,28 @@ const Page = ({ params }) => {
     };
 
     fetchData();
-  }, [id]); // Include id in the dependency array to re-fetch data when id changes
+  }, [id]);
+
+  const handleUpdateUser = async (updatedData) => {
+    try {
+      updatedData.birthdate = startDate.toISOString().split("T")[0];
+      const response = await axios.put(
+        `https://tasks.vitasoftsolutions.com/userdata/${id}/`,
+        updatedData
+      );
+      console.log("Updated user data:", response.data);
+      toast.success("User updated successfully!");
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast.error("Error occurred while updating user.");
+    }
+  };
 
   return (
     <div>
       <form
         action=""
-        // onSubmit={handleSubmit(handleCreateUser)}
+        onSubmit={handleSubmit(handleUpdateUser)}
         className="p-16 bg-white rounded-md shadow-md"
       >
         <ToastContainer />
@@ -74,28 +93,38 @@ const Page = ({ params }) => {
           />
         </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="profile_picture"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Profile Picture
-          </label>
-          <Dropzone onDrop={onDrop}>
-            {({ getRootProps, getInputProps }) => (
-              <div
-                className="mt-1 py-6 bg-slate-100 text-center border rounded-md cursor-pointer"
-                {...getRootProps()}
-              >
-                <input {...getInputProps()} />
-                <p>
-                  {profilePicture
-                    ? profilePicture?.name
-                    : "Drag 'n' drop your profile picture here, or click to select file"}
-                </p>
-              </div>
-            )}
-          </Dropzone>
+        <div className="flex justify-around gap-20 items-center mb-4">
+          <div className="overflow-hidden">
+            <img
+              // src={user?.profile_picture}
+              src={`${user?.profile_picture}?timestamp=${new Date().getTime()}`}
+              alt=""
+              className="h-20 w-20 rounded-full"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="profile_picture"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Update Picture
+            </label>
+            <Dropzone onDrop={onDrop}>
+              {({ getRootProps, getInputProps }) => (
+                <div
+                  className="mt-1 py-6 px-12 bg-slate-100 text-center border rounded-md cursor-pointer"
+                  {...getRootProps()}
+                >
+                  <input {...getInputProps()} />
+                  <p>
+                    {profilePicture
+                      ? profilePicture?.name
+                      : "Drag 'n' drop your profile picture here, or click to select file"}
+                  </p>
+                </div>
+              )}
+            </Dropzone>
+          </div>
         </div>
 
         <div className="flex justify-start gap-36">
@@ -109,8 +138,8 @@ const Page = ({ params }) => {
             <DatePicker
               className="mt-1 p-2 border rounded-md w-full"
               selected={startDate}
-              defaultValue={user?.birthdate}
               onChange={(date) => setStartDate(date)}
+              defaultValue={user?.birthdate}
               required
             />
           </div>
