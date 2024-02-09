@@ -1,15 +1,17 @@
 "use client";
 
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import Link from "next/link";
 
 const NavBar = () => {
   return (
-    <Navbar className="bg-blue-400 py-5 sticky shadow-lg ">
-      <Navbar.Brand href="/">
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          User Management
-        </span>
-      </Navbar.Brand>
+    <Navbar className="bg-blue-400 py-5 shadow-lg ">
+      <Link
+        href="/"
+        className="text-xl right-[2px] md:right-[5px] lg:right-[10px] font-bold"
+      >
+        User Management
+      </Link>
       <div className="flex md:order-2">
         <Dropdown
           arrowIcon={false}

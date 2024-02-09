@@ -103,7 +103,13 @@ const HomePage = () => {
                 </td>
                 <td className="px-3 py-4">
                   <div className="flex justify-center items-center gap-2">
-                    <RxUpdate className="text-green-400 h-5 w-5" />
+                    <Link
+                      href="/update-user/[id]"
+                      as={`/update-user/${user.id}`}
+                    >
+                      <RxUpdate className="text-green-400 h-5 w-5" />
+                    </Link>
+
                     <MdDelete
                       className="text-red-700 h-5 w-5 cursor-pointer"
                       onClick={() => handleDeleteUser(user.id)}
