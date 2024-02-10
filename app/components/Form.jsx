@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Dropzone from "react-dropzone";
 import DatePicker from "react-datepicker";
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
@@ -159,13 +159,13 @@ const Form = () => {
         </div>
 
         <div className="mb-4">
-          {/* <label
+          <label
             htmlFor="description"
             className="block text-sm font-medium text-gray-700"
           >
             Description
-          </label> */}
-          {/* <div className="block text-sm font-medium text-gray-700">
+          </label>
+          <div className="block text-sm font-medium text-gray-700">
             <CKEditor
               editor={ClassicEditor}
               data={description}
@@ -175,7 +175,7 @@ const Form = () => {
               }}
               required
             />
-          </div> */}
+          </div>
         </div>
         <button
           className="bg-indigo-500 text-white p-2 rounded-md w-full"
