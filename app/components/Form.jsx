@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Editor, EditorState } from "draft-js";
+// import ReactDOM from "react-dom";
+// import { Editor, EditorState } from "draft-js";
 import "draft-js/dist/Draft.css";
 import { useForm } from "react-hook-form";
 import Dropzone from "react-dropzone";
@@ -161,7 +161,7 @@ const Form = () => {
           </div>
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label
             htmlFor="description"
             className="block text-sm font-medium text-gray-700"
@@ -171,7 +171,7 @@ const Form = () => {
           <div className="block text-sm font-medium text-gray-700">
             <RichTextEditor />
           </div>
-        </div>
+        </div> */}
         <button
           className="bg-indigo-500 text-white p-2 rounded-md w-full"
           type="submit"
