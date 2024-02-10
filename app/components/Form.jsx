@@ -2,17 +2,15 @@
 import React, { useState } from "react";
 // import ReactDOM from "react-dom";
 // import { Editor, EditorState } from "draft-js";
-import "draft-js/dist/Draft.css";
+// import "draft-js/dist/Draft.css";
 import { useForm } from "react-hook-form";
 import Dropzone from "react-dropzone";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RichTextEditor from "./RichTextEditor";
+// import RichTextEditor from "./RichTextEditor";
 
 const Form = () => {
   const { handleSubmit, reset, register } = useForm();
