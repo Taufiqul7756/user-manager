@@ -1,15 +1,18 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { Editor, EditorState } from "draft-js";
+import "draft-js/dist/Draft.css";
 import { useForm } from "react-hook-form";
 import Dropzone from "react-dropzone";
 import DatePicker from "react-datepicker";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RichTextEditor from "./RichTextEditor";
 
 const Form = () => {
   const { handleSubmit, reset, register } = useForm();
@@ -166,15 +169,7 @@ const Form = () => {
             Description
           </label>
           <div className="block text-sm font-medium text-gray-700">
-            <CKEditor
-              editor={ClassicEditor}
-              data={description}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                setDescription(data);
-              }}
-              required
-            />
+            <RichTextEditor />
           </div>
         </div>
         <button
